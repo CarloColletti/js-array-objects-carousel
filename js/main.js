@@ -12,7 +12,8 @@ Milestone 1:
 Ora rimuoviamo i contenuti statici e usiamo l'array di oggetti letterali per popolare dinamicamente il carosello.
 Al click dell'utente sulle frecce verso sinistra o destra, l'immagine attiva diventerà visibile e dovremo aggiungervi titolo e testo.
 Milestone 2:
-Aggiungere il **ciclo infinito** del carosello. Ovvero se la miniatura attiva è la prima e l'utente clicca la freccia verso destra, la miniatura che deve attivarsi sarà l'ultima e viceversa per l'ultima miniatura se l'utente clicca la freccia verso sinistra.
+Aggiungere il **ciclo infinito** del carosello. Ovvero se la miniatura attiva è la prima e l'utente clicca la freccia verso destra, la miniatura che deve attivarsi sarà 
+l'ultima e viceversa per l'ultima miniatura se l'utente clicca la freccia verso sinistra.
 BONUS 1:
 Aggiungere le thumbnails (sottoforma di miniatura) ed al click attivare l'immagine corrispondente.
 BONUS 2:
@@ -49,3 +50,61 @@ const images = [
         text: 'Marvel\'s Avengers is an epic, third-person, action-adventure game that combines an original, cinematic story with single-player and co-operative gameplay.',
     }
 ];
+
+// recupero elementi della pagina html 
+const slidesContainerEl = document.querySelector(".image");
+const nextImage = document.querySelector(".next");
+const prevImage = document.querySelector(".prev");
+
+
+
+// ON LOAD 
+
+let activeImage = 0;
+loadImage();
+
+
+// FUNZIONI 
+
+function loadImage() {
+    images.forEach((image, numberImage) => {
+        if (activeImage == numberImage) {
+            slidesContainerEl.innerHTML = `
+            <img src="${image.image}" class="w-100 img-fluid carousel-dimension" alt="#">
+            <div class="text-jumbo">
+                <h3>${image.title}</h3>
+                <p>${image.text}</p>
+            </div>
+            `
+        }
+
+    })
+}
+
+function moveDown() {
+    activeImage++
+    console.log(activeImage);
+    if (activeImage >= images.length) {
+        activeImage = 0;
+    }
+    loadImage()
+}
+
+
+function moveUp() {
+    activeImage--
+    console.log(activeImage);
+    if (activeImage < 0) {
+        activeImage = images.length - 1;
+    }
+    loadImage()
+}
+
+// creo gli event listener 
+
+nextImage.addEventListener('click', moveDown);
+prevImage.addEventListener('click', moveUp);
+
+
+
+

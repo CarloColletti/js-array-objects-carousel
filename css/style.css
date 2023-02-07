@@ -1,0 +1,50 @@
+.carousel-dimension {
+    height: 500px;
+    object-fit: cover;
+}
+
+
+.image,
+.slider {
+    position: relative;
+}
+
+.text-jumbo {
+    position: absolute;
+    color: white;
+    bottom: 0;
+    left: 10%;
+}
+
+
+/* Navigazione */
+.prev,
+.next {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    font-size: 30px;
+    font-weight: bold;
+    background-color: rgba(240, 240, 240, 0.5);
+    color: #444;
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 0 4px;
+}
+
+.prev {
+    top: 0;
+    left: 50%;
+    right: 10px;
+}
+
+.next {
+    bottom: 0;
+    left: 50%;
+    right: 10px;
+}
+
+.prev:hover,
+.next:hover {
+    background-color: rgba(240, 240, 240, 1);
+}
